@@ -15,7 +15,7 @@ the file word_dict.txt records all the characters which can be recognized: 3754 
 ## train the cnn
 	run the train code: python trainsinglechar.py
 
-## export the weights: see the script test_crnn.py 
+## export the cnn weights for crnn initialization: see the script test_crnn.py 
 		try:
             saver.restore(sess,tf.train.latest_checkpoint('ckpt_withrnn/'))
             #saver.restore(sess,tf.train.latest_checkpoint('ckpt32/'))
@@ -33,7 +33,14 @@ the file word_dict.txt records all the characters which can be recognized: 3754 
                 pickle.dump(datas,f)
         except Exception,err:
             print err
-
+## export the crnn weights for cpp server (implimented with cudnn or tenserflow_servering): see ocr_export.py
+	for cudnn impliment --------
+				for v in tf.trainable_variables():
+		            vd = v.eval(sess)
+				    print(v.name,vd.shape)
+				    vd.tofile("bin/"+v.name.split(':')[0]+".bin")
+	for tensorflow_servering --------
+				 see ocr_export.py or tensorflow website/api/deploy
 ## train/test the crnn without rnn
 	train : python traintline.py
 	test : python test_tline_without.py
