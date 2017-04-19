@@ -9,6 +9,9 @@ the train/test .lst file has format as:
 XXX.png 100 200 333 666
 split by blank, and the first element is image file name, rest the char's index(file word_dict.txt record all the chars and their index number)
 
+# dictionary
+the file word_dict.txt records all the characters which can be recognized: 3754 chinese, 10 number, 52 english, and other 34 symbol
+
 ## train the cnn
 	run the train code: python trainsinglechar.py
 
